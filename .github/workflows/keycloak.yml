@@ -34,11 +34,11 @@ jobs:
         depth: 1
         branch: 'main'
         owner: 'dlysenko6745'
-        repository: 'grafanagke'
+        repository: 'keycloak'
     
     - name: Access cloned repo
       run: |
-         cd grafanagke
+         cd keycloak
          ls -la   
 
     - name: Deploy with Helm
@@ -48,4 +48,4 @@ jobs:
         gcloud components update
         gcloud container clusters get-credentials gke-project-426920-gke --region us-east5 --project gke-project-426920
         helm repo add bitnami https://charts.bitnami.com/bitnami
-        helm install my-keycloak bitnami/keycloak --version 21.4.4
+        helm install my-keycloak bitnami/keycloak -f values.yaml -n keycloak
